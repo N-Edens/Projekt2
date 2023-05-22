@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <div class="header">
+        <!--Content before waves-->
+        <div class="inner-header flex">
+        <h2>Driving Towards Sustainability</h2>
+        </div></div>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="produkt.css"/>
+    <style>
+    body {
+      background-image: url("https://wallpaperaccess.com/full/5691542.jpg"); /* Replace with the path to your image */
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .rotate {
+    transform: rotate(180deg);
+  }
+  </style>
+    <div class="container2">
+      <h4>VERDEN ER I FORANDRING<br>OG BILER HAR EN STOR INDFLYDELSE</h4>
+      <h5>Driving Towards Sustainability, er et projekt, der er lavet ved brug af data, til at undersøge brugen af biler i Aarhus, samt udledningen af CO2. Her kigges der nærmere på 2030 målene fra Aarhus Kommune, og hvor opnåelige de er.</h5>
+    </div>
+   <div class="container"><br>
+    <h3>Hvilke er de mest trafikerede veje i Århus?</h3>
+    <span class="color2013">∎ </span><button id="button1">Trafiktal 2013</button>
+    <span class="color2016">∎ </span><button id="button2">Trafiktal 2016</button>
+    <span class="color2022">∎ </span><button id="button">Trafiktal 2022</button>
+    <h4></h4>
+<body>
+<!-- Vi indsætter vores script API source og vores main.js fil -->
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="api.js" class="api-script"></script>
+    <br><br>
+    <h3>Hvor meget udledning er der?</h3>
+    <iframe src="trafikgraf.html" frameborder="0"></iframe>
+    <br><br>
+    <h3>Antal biler i Århus</h3>
+    <iframe src="index2.html" frameborder="0"></iframe>
+    <br><br>
+    <h3>Brændstofbiler vs. Elbiler</h3>
+      <iframe src="index.html" class="custom-iframe" frameborder="0"></iframe>
+      <br><br>
+      <h3>Regressionslinje for 2030 planen</h3>
+      <iframe src="estimatednrchart.html" frameborder="0"></iframe>
+      <br><br>
+      <h3>Ifølge 2030 planen</h3>
+      <iframe src="bar.html" class="custom-iframe1" frameborder="0"></iframe>
+</div>
+</body>
+</html>
