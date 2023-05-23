@@ -4,7 +4,7 @@
   "description": "my first api",
   "main": "produkt.html",
   "scripts": {
-    "start" : "node produkt.html",
+    "start" : "node api.js",
     "test": "echo \"Error: no test specified\" && exit 1"
     
   },
