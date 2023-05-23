@@ -68,7 +68,7 @@
     }
   </style>
 </head>
-<center><body>
+<body>
   <div class="chart">
     <div class="chart-line"></div>
     <div class="bar-container">
@@ -82,7 +82,7 @@
     <div class="bar-container">
       <div class="bar-label">CO2 ved 40% elbiler:</div>
       <div class="bar-wrapper">
-        <div class="bar-fill1" style="width: 54%;">
+        <div class="bar-fill" style="width: 54%;">
           <span class="bar-text">277.076.474 Kg CO2</span>
         </div>
       </div>
@@ -97,24 +97,28 @@
     </div>
   </div>
 
-  <script>
-    // Data values
-    var co2Data = [331367483, 277076474, 188455917];
-
-    // Update bar widths and data text with data values
-    var bars = document.getElementsByClassName('bar-fill');
-    for (var i = 0; i < bars.length; i++) {
-      var width = (co2Data[i] / Math.max(...co2Data)) * 100;
-      bars[i].style.width = width + '%';
-
-      var bars = document.getElementsByClassName('bar-fill1');
-    for (var i = 0; i < bars.length; i++) {
-      var width = (co2Data[i] / Math.max(...co2Data)) * 100;
-      bars[i].style.width = width + '%';
-      
-      var barText = bars[i].querySelector('.bar-text');
-      barText.textContent = co2Data[i].toLocaleString() + ' Kg CO2';
-    }
-  </script>
-</body></center>
+</body>
 </html>
+<script>
+  // Data values
+  var co2Data = [331367483, 277076474, 188455917];
+
+  // Update bar widths and data text with data values
+  var bars = document.getElementsByClassName('bar-fill');
+  for (var i = 0; i < bars.length; i++) {
+    var width = (co2Data[i] / Math.max(...co2Data)) * 100;
+    bars[i].style.width = width + '%';
+
+    var barText = bars[i].querySelector('.bar-text');
+    barText.textContent = co2Data[i].toLocaleString() + ' Kg CO2';
+  }
+
+  var bars1 = document.getElementsByClassName('bar-fill1');
+  for (var i = 0; i < bars1.length; i++) {
+    var width = (co2Data[i] / Math.max(...co2Data)) * 100;
+    bars1[i].style.width = width + '%';
+
+    var barText = bars1[i].querySelector('.bar-text');
+    barText.textContent = co2Data[i].toLocaleString() + ' Kg CO2';
+  }
+</script>
