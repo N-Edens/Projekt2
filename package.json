@@ -2,7 +2,7 @@
   "name": "myapp1",
   "version": "1.0.0",
   "description": "my first api",
-  "main": "produkt.html",
+  "main": "api.js",
   "scripts": {
     "start" : "node api.js",
     "test": "echo \"Error: no test specified\" && exit 1"
