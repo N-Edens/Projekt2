@@ -1,14 +1,14 @@
 {
-  "name": "myapp1",
+  "name": "DTS",
   "version": "1.0.0",
-  "description": "my first api",
+  "description": "Project",
   "main": "api.js",
   "scripts": {
-    "start" : "node api.js",
+    "start" : "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
     
   },
-  "author": "",
+  "author": "DTS",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
