@@ -19,7 +19,7 @@
       text-align: right;
       padding-right: 10px;
       font-weight: bold;
-      color: #555;
+      color: rgb(29, 27, 27);
     }
 
     .bar-wrapper {
@@ -40,7 +40,7 @@
 
     .bar-fill1 {
       height: 100%;
-      background-color: #26d416;
+      background-color: #2196F3;
       transition: width 0.5s ease-in-out;
       position: relative;
     }
@@ -50,9 +50,15 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      color: #fff;
-      font-size: 12px;
+      color: rgb(23, 22, 22);
+      font-size: 14px;
       visibility: hidden;
+    }
+
+    /* Custom color for the second bar */
+    .bar-container:nth-child(3) .bar-fill,
+    .bar-container:nth-child(3) .bar-text {
+      background-color: #0bab2b;
     }
   </style>
 </head>
