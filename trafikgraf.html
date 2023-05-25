@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Ring Road Data</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<style>
 		#ring-road-chart {
 			position: relative;
@@ -16,6 +16,7 @@
 	</style>
 </head>
 <body>
+	<button onclick="fetchData()">Fetch Data</button>
 	<div id="graph-container">
 		<canvas id="ring-road-chart"></canvas>
 		<div id="data-switcher">
@@ -25,30 +26,75 @@
 		</div>
 	</div>
 	<script>
-		var ctx = document.getElementById('ring-road-chart').getContext('2d');
-		var chart;
-		var vehicleData = {
-			labels: ['Vestre Ringgade', 'Åby Ringvej', 'Hasle Ringvej', 'Viby Ringvej'],
-			datasets: [{
-				label: '2013',
-				backgroundColor: 'rgba(255, 99, 132, 0.2)',
-				borderColor: 'rgba(255, 99, 132, 1)',
-				borderWidth: 1,
-				data: [31700, 25950, 26333, 27500]
-			}, {
-				label: '2016',
-				backgroundColor: 'rgba(54, 162, 235, 0.2)',
-				borderColor: 'rgba(54, 162, 235, 1)',
-				borderWidth: 1,
-				data: [32350, 28633, 24200, 31333]
-			}, {
-				label: '2022',
-				backgroundColor: 'rgba(255, 206, 86, 0.2)',
-				borderColor: 'rgba(255, 206, 86, 1)',
-				borderWidth: 1,
-				data: [30267, 36300, 27433, 28900]
-			}]
-		};
+var ctx = document.getElementById('ring-road-chart');
+var chart;
+var vehicleData = {
+  labels: ['Vestre Ringgade', 'Åby Ringvej', 'Hasle Ringvej', 'Viby Ringvej'],
+  datasets: [{
+    label: '2013',
+    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+    borderColor: 'rgba(255, 99, 132, 1)',
+    borderWidth: 1,
+    data: [] // Placeholder for the dynamic data
+  }, {
+    label: '2016',
+    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+    borderColor: 'rgba(54, 162, 235, 1)',
+    borderWidth: 1,
+    data: [] // Placeholder for the dynamic data
+  }, {
+    label: '2022',
+    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+    borderColor: 'rgba(255, 206, 86, 1)',
+    borderWidth: 1,
+    data: [] // Placeholder for the dynamic data
+  }]
+};
+
+// Function to fetch data from ElephantSQL API
+function fetchData() {
+  fetch('https://dts-gfjg.onrender.com/vej2013')
+    .then(response => response.json())
+    .then(data => {
+      // Update the vehicleData object with the fetched data
+      vehicleData.datasets[0].data = data.map(item => item.gennemsnit);
+
+      fetch('https://dts-gfjg.onrender.com/vej2016')
+        .then(response => response.json())
+        .then(data => {
+          // Update the vehicleData object with the fetched data
+          vehicleData.datasets[1].data = data.map(item => item.gennemsnit);
+
+          fetch('https://dts-gfjg.onrender.com/vej')
+            .then(response => response.json())
+            .then(data => {
+              // Update the vehicleData object with the fetched data
+              vehicleData.datasets[2].data = data.map(item => item.gennemsnit);
+
+              // Create the chart using the updated data
+              chart = new Chart(ctx, {
+                type: 'bar',
+                data: vehicleData,
+                options: {
+                  // Add any additional options for the chart
+                }
+              });
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+// Call the fetchData function to fetch and display the data
+fetchData();
 
 		var antalBiler = {
 			labels: ['Vestre Ringgade', 'Åby Ringvej', 'Hasle Ringvej', 'Viby Ringvej'],
@@ -57,28 +103,81 @@
 				backgroundColor: 'rgba(255, 99, 132, 0.2)',
 				borderColor: 'rgba(255, 99, 132, 1)',
 				borderWidth: 1,
-				data: [16933, 20685, 17183, 17944]
+				data: []
 			}, {
 				label: 'Diesel',
 				backgroundColor: 'rgba(54, 162, 235, 0.2)',
 				borderColor: 'rgba(54, 162, 235, 1)',
 				borderWidth: 1,
-				data: [6470, 7903, 6565, 6856]
+				data: []
 			}, {
 
 				label: 'El',
 				backgroundColor: 'rgba(75, 192, 192, 0.2)',
 				borderColor: 'rgba(75, 192, 192, 1)',	
 				borderWidth: 1,
-				data: [1409, 1721, 1430, 1493]
+				data: []
 			}, {
 				label: 'Pluginhybrid',
 				backgroundColor: 'rgba(255, 206, 86, 0.2)',
 				borderColor: 'rgba(255, 206, 86, 1)',
 				borderWidth: 1,
-				data: [1139, 1392, 1156, 1207]
+				data: []
 			}]
 		};
+
+		// Function to fetch data from ElephantSQL API
+function fetchData1() {
+  fetch('https://dts-gfjg.onrender.com/antalbiler')
+    .then(response => response.json())
+    .then(data => {
+      // Update the vehicleData object with the fetched data
+      antalBiler.datasets[0].data = data.map(item => item.benzin);
+
+      fetch('https://dts-gfjg.onrender.com/antalbiler')
+        .then(response => response.json())
+        .then(data => {
+          // Update the vehicleData object with the fetched data
+          antalBiler.datasets[1].data = data.map(item => item.diesel);
+
+          fetch('https://dts-gfjg.onrender.com/antalbiler')
+            .then(response => response.json())
+            .then(data => {
+              // Update the vehicleData object with the fetched data
+              antalBiler.datasets[2].data = data.map(item => item.el);
+
+
+			  fetch('https://dts-gfjg.onrender.com/antalbiler')
+            .then(response => response.json())
+            .then(data => {
+              // Update the vehicleData object with the fetched data
+              antalBiler.datasets[3].data = data.map(item => item.pluginhybrid);
+
+              // Create the chart using the updated data
+              chart = new Chart(ctx, {
+                type: 'bar',
+                data: antalBiler,
+                options: {
+                  // Add any additional options for the chart
+                }
+              });
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+});
+}
+
+// Call the fetchData function to fetch and display the data
+fetchData1();
 
         var co2Data = {
 	labels: ['Vestre Ringgade', 'Åby Ringvej', 'Hasle Ringvej', 'Viby Ringvej'],
