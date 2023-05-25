@@ -16,7 +16,6 @@
 	</style>
 </head>
 <body>
-	<button onclick="fetchData()">Fetch Data</button>
 	<div id="graph-container">
 		<canvas id="ring-road-chart"></canvas>
 		<div id="data-switcher">
@@ -52,7 +51,6 @@ var vehicleData = {
 };
 
 // Function to fetch data from ElephantSQL API
-function fetchData() {
   fetch('https://dts-gfjg.onrender.com/vej2013')
     .then(response => response.json())
     .then(data => {
@@ -91,10 +89,8 @@ function fetchData() {
     .catch(error => {
       console.error('Error:', error);
     });
-}
 
 // Call the fetchData function to fetch and display the data
-fetchData();
 
 		var antalBiler = {
 			labels: ['Vestre Ringgade', 'Åby Ringvej', 'Hasle Ringvej', 'Viby Ringvej'],
@@ -127,7 +123,6 @@ fetchData();
 		};
 
 		// Function to fetch data from ElephantSQL API
-function fetchData1() {
   fetch('https://dts-gfjg.onrender.com/antalbiler')
     .then(response => response.json())
     .then(data => {
@@ -174,7 +169,6 @@ function fetchData1() {
       console.error('Error:', error);
     });
 });
-}
 
 // Call the fetchData function to fetch and display the data
 fetchData1();
