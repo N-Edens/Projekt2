@@ -23,7 +23,7 @@ const client = new Client({
 client.connect();
 
 app.get('/vej2013', (req, res) => {
-  client.query('SELECT * FROM vej2013 DESC LIMIT 4', (error, results) => {
+  client.query('SELECT * FROM vej2013 LIMIT 4', (error, results) => {
     if (error) {
       throw error;
     }
@@ -32,7 +32,7 @@ app.get('/vej2013', (req, res) => {
 });
 
 app.get('/vej2016', (req, res) => {
-  client.query('SELECT * FROM vej2016 DESC LIMIT 4', (error, results) => {
+  client.query('SELECT * FROM vej2016 LIMIT 4', (error, results) => {
     if (error) {
       throw error;
     }
@@ -41,7 +41,7 @@ app.get('/vej2016', (req, res) => {
 });
 
 app.get('/vej', (req, res) => {
-  client.query('SELECT * FROM vej DESC LIMIT 4', (error, results) => {
+  client.query('SELECT * FROM vej LIMIT 4', (error, results) => {
     if (error) {
       throw error;
     }
