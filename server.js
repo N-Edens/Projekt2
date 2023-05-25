@@ -7,7 +7,7 @@ const { url } = require('os');
 
 const app = express();
 const port = process.env.PORT || 3000;
-const hostname = 'dts.onrender.com';
+const hostname = 'dtss.onrender.com';
 
 app.use(cors());
 app.use(express.json());
@@ -22,14 +22,41 @@ const client = new Client({
 
 client.connect();
 
-app.get('/vej', (req, res) => {
-  client.query('SELECT vejnavn, AVG(gennemsnit) AS gennemsnit FROM vej GROUP BY vejnavn ORDER BY gennemsnit DESC LIMIT 4;', (err, result) => {
-    if (err) {
-      console.error('Fejl ved hentning af data fra databasen', err);
-      res.status(500).send('Der opstod en fejl');
-    } else {
-      res.json(result.rows);
+app.get('/vej2013', (req, res) => {
+  client.query('SELECT vejnavn, AVG(gennemsnit) AS gennemsnit FROM vej2013 GROUP BY vejnavn ORDER BY gennemsnit DESC LIMIT 4', (error, results) => {
+    if (error) {
+      throw error;
     }
+    res.json(results.rows);
+  });
+});
+
+app.get('/vej2016', (req, res) => {
+  client.query('SELECT vejnavn, AVG(gennemsnit) AS gennemsnit FROM vej2016 GROUP BY vejnavn ORDER BY gennemsnit DESC LIMIT 4', (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.json(results.rows);
+  });
+});
+
+app.get('/vej', (req, res) => {
+  client.query('SELECT vejnavn, AVG(gennemsnit) AS gennemsnit FROM vej GROUP BY vejnavn ORDER BY gennemsnit DESC LIMIT 4', (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.json(results.rows);
+  });
+});
+
+//QUERY FOR ANTAL BILER PR TYPE
+
+app.get('/antalbiler', (req, res) => {
+  client.query('SELECT * FROM antalbiler', (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.json(results.rows);
   });
 });
 
